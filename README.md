@@ -25,4 +25,13 @@ GET : /api/v1/class/view-available-class.php _@param : id_user_
 GET : /api/v1/class/view-myclass.php _@param : id_user_
 
 #### Delete my class
-GET : /api/v1/class/view-available-class.php _@param : id_user, id_class_
+POST : /api/v1/class/delete-myclass.php _@param : id_user, id_class_
+
+#### Join Class
+POSTPOST : /api/v1/class/join-class.php _@form-data : id_user, id_class_
+
+#### Cancle Class
+POST : /api/v1/class/cancle-class.php _@form-data : id_attendies, id_user_
+
+#### Attendies
+POST : /api/v1/class/attendies.php _@form-data : id_class_
