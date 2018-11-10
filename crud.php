@@ -85,6 +85,50 @@
     		echo json_encode($result);
     	}
 
+        public function joined($id_user, $id_class)
+        {
+            $query = "SELECT user.id_user,user.name, class.* from attendies join user join class on user.id_user = attendies.id_user AND class.id_class = attendies.id_class where user.id_user = '$id_user' AND class.id_class = '$id_class'";
+            $data = $this->connect()->query($query);
+
+            $result = array();
+            if(empty($data))
+            {
+                return $result;
+            }
+            else
+            {
+                while($isi = $data->fetch_assoc())
+                {
+                    $result[] = $isi;
+                }
+            }
+
+            return $result;
+        }
+
+        // Menampilkan attendies by class
+        public function attendies($id_class){
+            $query = "SELECT user.name, user.id_user, user.email_user, class.* from attendies join user join class on user.id_user = attendies.id_user AND class.id_class = attendies.id_class where class.id_class = '$id_class'";
+
+            $data = $this->connect()->query($query);
+
+            $result = array();
+
+            if(empty($data))
+            {
+                return $result;
+            }
+            else
+            {
+                while($isi = $data->fetch_assoc())
+                {
+                    $result[] = $isi;
+                }
+            }
+
+            return $result;
+        }
+
         public function rightJoinTable($tableOne, $foreignKey, $tableTwo, $primaryKey)
         {
             $query = "SELECT $tableOne.*, $tableTwo.* FROM $tableOne RIGHT JOIN $tableTwo ON $tableTwo.$primaryKey = $tableOne.$foreignKey";
